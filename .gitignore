@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Environment configurations (keep examples)
+.env
+.env.*
+!.env.example
+!server/.env.example
+
+# Production builds
+dist/
+client/dist/
+
+# Media uploads and cache
+uploads/*
+!uploads/.gitkeep
+server/uploads/*
+!server/uploads/.gitkeep
+.cache/
+server/uploads/.cache/
+
+# Test files, scripts, and reports
+test_suite.js
+TEST_REPORT.md
+test_*.js
+server/test_*.js
+*.test.js
+*.spec.js
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS and Editor metadata
+.DS_Store
+Thumbs.db
