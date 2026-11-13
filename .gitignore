@@ -45,3 +45,6 @@ eval/data/
 *.zip
 temp_bench_frames/
 
+
+eval/.venv/
+

@@ -1,0 +1,821 @@
+{
+  "timestamp": "2026-11-13T18:29:16.416Z",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "nodeVersion": "v24.21.0",
+    "geminiCallsIncluded": false,
+    "warmUpRuns": 1,
+    "measuredRunsPerSequence": 5
+  },
+  "overall": {
+    "totalSequences": 6,
+    "totalMeasuredRuns": 30,
+    "endToEndFps": {
+      "n": 30,
+      "mean": 4.04,
+      "median": 3.97,
+      "p95": 5.55,
+      "p99": 5.67,
+      "min": 2.75,
+      "max": 5.68
+    },
+    "decodeFps": {
+      "n": 30,
+      "mean": 55.59,
+      "median": 59.13,
+      "p95": 72.88,
+      "p99": 74.3,
+      "min": 31.02,
+      "max": 74.77
+    },
+    "inferenceFps": {
+      "n": 30,
+      "mean": 4.38,
+      "median": 4.37,
+      "p95": 6.05,
+      "p99": 6.14,
+      "min": 2.9,
+      "max": 6.16
+    },
+    "trackingFps": {
+      "n": 30,
+      "mean": 12718.58,
+      "median": 11062.43,
+      "p95": 28315.99,
+      "p99": 33726.97,
+      "min": 2532.58,
+      "max": 35196.51
+    }
+  },
+  "perSequence": [
+    {
+      "sequence": "detrac_69_MVI_39501",
+      "framesExtracted": 42,
+      "numRuns": 5,
+      "runs": [
+        {
+          "run": 1,
+          "framesCount": 42,
+          "detectionsCount": 321,
+          "decodeTimeMs": 876.5599000000002,
+          "decodeFps": 47.9145806236402,
+          "totalInferenceTimeMs": 11080.007999999983,
+          "inferenceFps": 3.790610981508322,
+          "totalTrackingTimeMs": 7.387600000005477,
+          "trackingFps": 5685.20223076085,
+          "totalPipelineTimeMs": 11963.95549999999,
+          "endToEndFps": 3.5105446522264345
+        },
+        {
+          "run": 2,
+          "framesCount": 42,
+          "detectionsCount": 321,
+          "decodeTimeMs": 726.6540000000023,
+          "decodeFps": 57.79917264612852,
+          "totalInferenceTimeMs": 12179.877999999997,
+          "inferenceFps": 3.448310401795487,
+          "totalTrackingTimeMs": 14.106099999989965,
+          "trackingFps": 2977.435293952962,
+          "totalPipelineTimeMs": 12920.63809999999,
+          "endToEndFps": 3.250613450739715
+        },
+        {
+          "run": 3,
+          "framesCount": 42,
+          "detectionsCount": 321,
+          "decodeTimeMs": 1083.7007000000012,
+          "decodeFps": 38.75608828157069,
+          "totalInferenceTimeMs": 13066.54459999998,
+          "inferenceFps": 3.214315741898594,
+          "totalTrackingTimeMs": 16.583900000005087,
+          "trackingFps": 2532.5767762701844,
+          "totalPipelineTimeMs": 14166.829199999986,
+          "endToEndFps": 2.964671868846985
+        },
+        {
+          "run": 4,
+          "framesCount": 42,
+          "detectionsCount": 321,
+          "decodeTimeMs": 1055.548999999999,
+          "decodeFps": 39.78972079931869,
+          "totalInferenceTimeMs": 11968.465500000006,
+          "inferenceFps": 3.5092217962277603,
+          "totalTrackingTimeMs": 6.47790000000532,
+          "trackingFps": 6483.582642517715,
+          "totalPipelineTimeMs": 13030.49240000001,
+          "endToEndFps": 3.223208970982552
+        },
+        {
+          "run": 5,
+          "framesCount": 42,
+          "detectionsCount": 321,
+          "decodeTimeMs": 1273.5736999999936,
+          "decodeFps": 32.978067935919384,
+          "totalInferenceTimeMs": 9700.528900000048,
+          "inferenceFps": 4.32966082911209,
+          "totalTrackingTimeMs": 8.025100000042585,
+          "trackingFps": 5233.579643839595,
+          "totalPipelineTimeMs": 10982.127700000085,
+          "endToEndFps": 3.824395522190083
+        }
+      ],
+      "metrics": {
+        "decodeFps": {
+          "n": 5,
+          "mean": 43.45,
+          "median": 39.79,
+          "p95": 55.82,
+          "p99": 57.4,
+          "min": 32.98,
+          "max": 57.8
+        },
+        "inferenceFps": {
+          "n": 5,
+          "mean": 3.66,
+          "median": 3.51,
+          "p95": 4.22,
+          "p99": 4.31,
+          "min": 3.21,
+          "max": 4.33
+        },
+        "trackingFps": {
+          "n": 5,
+          "mean": 4582.48,
+          "median": 5233.58,
+          "p95": 6323.91,
+          "p99": 6451.65,
+          "min": 2532.58,
+          "max": 6483.58
+        },
+        "endToEndFps": {
+          "n": 5,
+          "mean": 3.35,
+          "median": 3.25,
+          "p95": 3.76,
+          "p99": 3.81,
+          "min": 2.96,
+          "max": 3.82
+        },
+        "inferenceLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 276.17,
+          "median": 265.23,
+          "p95": 441.89,
+          "p99": 661.97,
+          "min": 150.93,
+          "max": 872.01
+        },
+        "trackingLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 0.25,
+          "median": 0.1,
+          "p95": 0.73,
+          "p99": 3.27,
+          "min": 0.03,
+          "max": 6.97
+        }
+      }
+    },
+    {
+      "sequence": "detrac_70_MVI_39511",
+      "framesExtracted": 46,
+      "numRuns": 5,
+      "runs": [
+        {
+          "run": 1,
+          "framesCount": 46,
+          "detectionsCount": 259,
+          "decodeTimeMs": 675.886799999993,
+          "decodeFps": 68.05873409571024,
+          "totalInferenceTimeMs": 12208.602000000057,
+          "inferenceFps": 3.767835170644418,
+          "totalTrackingTimeMs": 2.3009000000165543,
+          "trackingFps": 19992.17697408364,
+          "totalPipelineTimeMs": 12886.789700000067,
+          "endToEndFps": 3.569546882572295
+        },
+        {
+          "run": 2,
+          "framesCount": 46,
+          "detectionsCount": 259,
+          "decodeTimeMs": 919.7272999999986,
+          "decodeFps": 50.01482504651114,
+          "totalInferenceTimeMs": 13007.089000000022,
+          "inferenceFps": 3.536533039790834,
+          "totalTrackingTimeMs": 3.9633999999350635,
+          "trackingFps": 11606.196699993354,
+          "totalPipelineTimeMs": 13930.779699999955,
+          "endToEndFps": 3.3020405885824284
+        },
+        {
+          "run": 3,
+          "framesCount": 46,
+          "detectionsCount": 259,
+          "decodeTimeMs": 685.7158999999956,
+          "decodeFps": 67.08317540835833,
+          "totalInferenceTimeMs": 11406.305199999973,
+          "inferenceFps": 4.0328571955097345,
+          "totalTrackingTimeMs": 4.990099999966333,
+          "trackingFps": 9218.252139297882,
+          "totalPipelineTimeMs": 12097.011199999935,
+          "endToEndFps": 3.802592164252956
+        },
+        {
+          "run": 4,
+          "framesCount": 46,
+          "detectionsCount": 259,
+          "decodeTimeMs": 1006.0054999999993,
+          "decodeFps": 45.72539613352018,
+          "totalInferenceTimeMs": 10530.299500000023,
+          "inferenceFps": 4.368346788237115,
+          "totalTrackingTimeMs": 11.246899999998277,
+          "trackingFps": 4090.0159154973417,
+          "totalPipelineTimeMs": 11547.55190000002,
+          "endToEndFps": 3.9835283182403294
+        },
+        {
+          "run": 5,
+          "framesCount": 46,
+          "detectionsCount": 259,
+          "decodeTimeMs": 628.7722999999824,
+          "decodeFps": 73.1584390724612,
+          "totalInferenceTimeMs": 8863.712499999907,
+          "inferenceFps": 5.189699011559827,
+          "totalTrackingTimeMs": 3.2346000000543427,
+          "trackingFps": 14221.232918823713,
+          "totalPipelineTimeMs": 9495.719399999944,
+          "endToEndFps": 4.844288048360009
+        }
+      ],
+      "metrics": {
+        "decodeFps": {
+          "n": 5,
+          "mean": 60.81,
+          "median": 67.08,
+          "p95": 72.14,
+          "p99": 72.95,
+          "min": 45.73,
+          "max": 73.16
+        },
+        "inferenceFps": {
+          "n": 5,
+          "mean": 4.18,
+          "median": 4.03,
+          "p95": 5.03,
+          "p99": 5.16,
+          "min": 3.54,
+          "max": 5.19
+        },
+        "trackingFps": {
+          "n": 5,
+          "mean": 11825.57,
+          "median": 11606.2,
+          "p95": 18837.99,
+          "p99": 19761.34,
+          "min": 4090.02,
+          "max": 19992.18
+        },
+        "endToEndFps": {
+          "n": 5,
+          "mean": 3.9,
+          "median": 3.8,
+          "p95": 4.67,
+          "p99": 4.81,
+          "min": 3.3,
+          "max": 4.84
+        },
+        "inferenceLatencyMsPerFrame": {
+          "n": 230,
+          "mean": 243.55,
+          "median": 204.33,
+          "p95": 463.17,
+          "p99": 713.62,
+          "min": 125.68,
+          "max": 776.39
+        },
+        "trackingLatencyMsPerFrame": {
+          "n": 230,
+          "mean": 0.11,
+          "median": 0.04,
+          "p95": 0.12,
+          "p99": 1.38,
+          "min": 0.02,
+          "max": 6.12
+        }
+      }
+    },
+    {
+      "sequence": "detrac_72_MVI_40711",
+      "framesExtracted": 42,
+      "numRuns": 5,
+      "runs": [
+        {
+          "run": 1,
+          "framesCount": 42,
+          "detectionsCount": 527,
+          "decodeTimeMs": 735.6468999999925,
+          "decodeFps": 57.09260788022138,
+          "totalInferenceTimeMs": 7228.0798000002105,
+          "inferenceFps": 5.810671874430437,
+          "totalTrackingTimeMs": 3.528300000092713,
+          "trackingFps": 11903.749680836767,
+          "totalPipelineTimeMs": 7967.255000000296,
+          "endToEndFps": 5.271577224526947
+        },
+        {
+          "run": 2,
+          "framesCount": 42,
+          "detectionsCount": 527,
+          "decodeTimeMs": 667.1219000000274,
+          "decodeFps": 62.95700980585149,
+          "totalInferenceTimeMs": 7095.559799999901,
+          "inferenceFps": 5.9191947053988025,
+          "totalTrackingTimeMs": 4.99589999995078,
+          "trackingFps": 8406.893652878118,
+          "totalPipelineTimeMs": 7767.677599999879,
+          "endToEndFps": 5.407021527258116
+        },
+        {
+          "run": 3,
+          "framesCount": 42,
+          "detectionsCount": 527,
+          "decodeTimeMs": 561.7410000000091,
+          "decodeFps": 74.7675530182047,
+          "totalInferenceTimeMs": 6822.115200000029,
+          "inferenceFps": 6.156448369561367,
+          "totalTrackingTimeMs": 10.60049999988405,
+          "trackingFps": 3962.077260549918,
+          "totalPipelineTimeMs": 7394.456699999922,
+          "endToEndFps": 5.6799304808966475
+        },
+        {
+          "run": 4,
+          "framesCount": 42,
+          "detectionsCount": 527,
+          "decodeTimeMs": 598.7698000000091,
+          "decodeFps": 70.1438182085993,
+          "totalInferenceTimeMs": 9144.247700000153,
+          "inferenceFps": 4.593051432760215,
+          "totalTrackingTimeMs": 3.7309999999706633,
+          "trackingFps": 11257.035647368064,
+          "totalPipelineTimeMs": 9746.748500000132,
+          "endToEndFps": 4.309129347084254
+        },
+        {
+          "run": 5,
+          "framesCount": 42,
+          "detectionsCount": 527,
+          "decodeTimeMs": 1353.798299999995,
+          "decodeFps": 31.023823859137774,
+          "totalInferenceTimeMs": 13905.749799999932,
+          "inferenceFps": 3.0203333587952375,
+          "totalTrackingTimeMs": 6.19539999999688,
+          "trackingFps": 6779.223294705935,
+          "totalPipelineTimeMs": 15265.743499999924,
+          "endToEndFps": 2.75125807007043
+        }
+      ],
+      "metrics": {
+        "decodeFps": {
+          "n": 5,
+          "mean": 59.2,
+          "median": 62.96,
+          "p95": 73.84,
+          "p99": 74.58,
+          "min": 31.02,
+          "max": 74.77
+        },
+        "inferenceFps": {
+          "n": 5,
+          "mean": 5.1,
+          "median": 5.81,
+          "p95": 6.11,
+          "p99": 6.15,
+          "min": 3.02,
+          "max": 6.16
+        },
+        "trackingFps": {
+          "n": 5,
+          "mean": 8461.8,
+          "median": 8406.89,
+          "p95": 11774.41,
+          "p99": 11877.88,
+          "min": 3962.08,
+          "max": 11903.75
+        },
+        "endToEndFps": {
+          "n": 5,
+          "mean": 4.68,
+          "median": 5.27,
+          "p95": 5.63,
+          "p99": 5.67,
+          "min": 2.75,
+          "max": 5.68
+        },
+        "inferenceLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 210.46,
+          "median": 164.04,
+          "p95": 475.29,
+          "p99": 930.02,
+          "min": 123.45,
+          "max": 1174.03
+        },
+        "trackingLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 0.14,
+          "median": 0.07,
+          "p95": 0.22,
+          "p99": 1.63,
+          "min": 0.03,
+          "max": 5.79
+        }
+      }
+    },
+    {
+      "sequence": "detrac_82_MVI_40773",
+      "framesExtracted": 42,
+      "numRuns": 5,
+      "runs": [
+        {
+          "run": 1,
+          "framesCount": 42,
+          "detectionsCount": 112,
+          "decodeTimeMs": 609.095799999981,
+          "decodeFps": 68.95467018488932,
+          "totalInferenceTimeMs": 9586.825099999958,
+          "inferenceFps": 4.381012437579589,
+          "totalTrackingTimeMs": 1.394000000145752,
+          "trackingFps": 30129.12481750977,
+          "totalPipelineTimeMs": 10197.314900000085,
+          "endToEndFps": 4.118731294646952
+        },
+        {
+          "run": 2,
+          "framesCount": 42,
+          "detectionsCount": 112,
+          "decodeTimeMs": 1104.236499999999,
+          "decodeFps": 38.035330293827485,
+          "totalInferenceTimeMs": 8098.136200000008,
+          "inferenceFps": 5.1863785644899325,
+          "totalTrackingTimeMs": 1.1933000000717584,
+          "trackingFps": 35196.513866985966,
+          "totalPipelineTimeMs": 9203.566000000079,
+          "endToEndFps": 4.563448558960694
+        },
+        {
+          "run": 3,
+          "framesCount": 42,
+          "detectionsCount": 112,
+          "decodeTimeMs": 683.6742000000086,
+          "decodeFps": 61.432770170352306,
+          "totalInferenceTimeMs": 14461.683400000038,
+          "inferenceFps": 2.904226212005159,
+          "totalTrackingTimeMs": 2.0579999999608845,
+          "trackingFps": 20408.163265694013,
+          "totalPipelineTimeMs": 15147.415600000008,
+          "endToEndFps": 2.7727502241372437
+        },
+        {
+          "run": 4,
+          "framesCount": 42,
+          "detectionsCount": 112,
+          "decodeTimeMs": 1211.7457999999751,
+          "decodeFps": 34.6607349495256,
+          "totalInferenceTimeMs": 13240.159099999903,
+          "inferenceFps": 3.1721673193489277,
+          "totalTrackingTimeMs": 1.6092000000353437,
+          "trackingFps": 26099.92542821124,
+          "totalPipelineTimeMs": 14453.514099999913,
+          "endToEndFps": 2.9058677155889896
+        },
+        {
+          "run": 5,
+          "framesCount": 42,
+          "detectionsCount": 112,
+          "decodeTimeMs": 832.0340999999898,
+          "decodeFps": 50.47870033211441,
+          "totalInferenceTimeMs": 14043.589899999904,
+          "inferenceFps": 2.9906882997203077,
+          "totalTrackingTimeMs": 1.7439000001177192,
+          "trackingFps": 24083.949766136164,
+          "totalPipelineTimeMs": 14877.367900000012,
+          "endToEndFps": 2.823080015383633
+        }
+      ],
+      "metrics": {
+        "decodeFps": {
+          "n": 5,
+          "mean": 50.71,
+          "median": 50.48,
+          "p95": 67.45,
+          "p99": 68.65,
+          "min": 34.66,
+          "max": 68.95
+        },
+        "inferenceFps": {
+          "n": 5,
+          "mean": 3.73,
+          "median": 3.17,
+          "p95": 5.03,
+          "p99": 5.15,
+          "min": 2.9,
+          "max": 5.19
+        },
+        "trackingFps": {
+          "n": 5,
+          "mean": 27183.54,
+          "median": 26099.93,
+          "p95": 34183.04,
+          "p99": 34993.82,
+          "min": 20408.16,
+          "max": 35196.51
+        },
+        "endToEndFps": {
+          "n": 5,
+          "mean": 3.44,
+          "median": 2.91,
+          "p95": 4.47,
+          "p99": 4.55,
+          "min": 2.77,
+          "max": 4.56
+        },
+        "inferenceLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 283,
+          "median": 213.17,
+          "p95": 519.57,
+          "p99": 1013.57,
+          "min": 148.19,
+          "max": 1167.5
+        },
+        "trackingLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 0.04,
+          "median": 0.03,
+          "p95": 0.09,
+          "p99": 0.15,
+          "min": 0.01,
+          "max": 0.63
+        }
+      }
+    },
+    {
+      "sequence": "detrac_83_MVI_40774",
+      "framesExtracted": 42,
+      "numRuns": 5,
+      "runs": [
+        {
+          "run": 1,
+          "framesCount": 42,
+          "detectionsCount": 204,
+          "decodeTimeMs": 732.1257999999798,
+          "decodeFps": 57.36719017414924,
+          "totalInferenceTimeMs": 10856.812399999995,
+          "inferenceFps": 3.868538798736176,
+          "totalTrackingTimeMs": 2.468599999730941,
+          "trackingFps": 17013.691973012108,
+          "totalPipelineTimeMs": 11591.406799999706,
+          "endToEndFps": 3.623373825513661
+        },
+        {
+          "run": 2,
+          "framesCount": 42,
+          "detectionsCount": 204,
+          "decodeTimeMs": 667.5461999999825,
+          "decodeFps": 62.916993610331545,
+          "totalInferenceTimeMs": 9077.679199999955,
+          "inferenceFps": 4.626733229347894,
+          "totalTrackingTimeMs": 3.828699999721721,
+          "trackingFps": 10969.780866365258,
+          "totalPipelineTimeMs": 9749.05409999966,
+          "endToEndFps": 4.308110260666362
+        },
+        {
+          "run": 3,
+          "framesCount": 42,
+          "detectionsCount": 204,
+          "decodeTimeMs": 635.180699999968,
+          "decodeFps": 66.12291588834817,
+          "totalInferenceTimeMs": 8784.50939999969,
+          "inferenceFps": 4.781143497894314,
+          "totalTrackingTimeMs": 1.9376999998930842,
+          "trackingFps": 21675.181917901336,
+          "totalPipelineTimeMs": 9421.627799999551,
+          "endToEndFps": 4.457828402009471
+        },
+        {
+          "run": 4,
+          "framesCount": 42,
+          "detectionsCount": 204,
+          "decodeTimeMs": 694.6190999999526,
+          "decodeFps": 60.464792862739976,
+          "totalInferenceTimeMs": 11030.524899999902,
+          "inferenceFps": 3.8076157191758275,
+          "totalTrackingTimeMs": 2.4429999999701977,
+          "trackingFps": 17191.97707757362,
+          "totalPipelineTimeMs": 11727.586999999825,
+          "endToEndFps": 3.5812993755663993
+        },
+        {
+          "run": 5,
+          "framesCount": 42,
+          "detectionsCount": 204,
+          "decodeTimeMs": 624.9103999999934,
+          "decodeFps": 67.20963517329915,
+          "totalInferenceTimeMs": 9236.487900000124,
+          "inferenceFps": 4.547182917870702,
+          "totalTrackingTimeMs": 4.5267999999341555,
+          "trackingFps": 9278.077229082555,
+          "totalPipelineTimeMs": 9865.925100000051,
+          "endToEndFps": 4.2570767134649925
+        }
+      ],
+      "metrics": {
+        "decodeFps": {
+          "n": 5,
+          "mean": 62.82,
+          "median": 62.92,
+          "p95": 66.99,
+          "p99": 67.17,
+          "min": 57.37,
+          "max": 67.21
+        },
+        "inferenceFps": {
+          "n": 5,
+          "mean": 4.33,
+          "median": 4.55,
+          "p95": 4.75,
+          "p99": 4.77,
+          "min": 3.81,
+          "max": 4.78
+        },
+        "trackingFps": {
+          "n": 5,
+          "mean": 15225.74,
+          "median": 17013.69,
+          "p95": 20778.54,
+          "p99": 21495.85,
+          "min": 9278.08,
+          "max": 21675.18
+        },
+        "endToEndFps": {
+          "n": 5,
+          "mean": 4.05,
+          "median": 4.26,
+          "p95": 4.43,
+          "p99": 4.45,
+          "min": 3.58,
+          "max": 4.46
+        },
+        "inferenceLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 233.27,
+          "median": 198.36,
+          "p95": 417.26,
+          "p99": 566.46,
+          "min": 150.85,
+          "max": 771.69
+        },
+        "trackingLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 0.07,
+          "median": 0.03,
+          "p95": 0.14,
+          "p99": 0.79,
+          "min": 0.02,
+          "max": 2.1
+        }
+      }
+    },
+    {
+      "sequence": "detrac_84_MVI_40775",
+      "framesExtracted": 42,
+      "numRuns": 5,
+      "runs": [
+        {
+          "run": 1,
+          "framesCount": 42,
+          "detectionsCount": 272,
+          "decodeTimeMs": 838.757099999988,
+          "decodeFps": 50.0740917722194,
+          "totalInferenceTimeMs": 9561.594800000195,
+          "inferenceFps": 4.392572669990067,
+          "totalTrackingTimeMs": 6.230000000097789,
+          "trackingFps": 6741.573033602046,
+          "totalPipelineTimeMs": 10406.581900000281,
+          "endToEndFps": 4.035907313620322
+        },
+        {
+          "run": 2,
+          "framesCount": 42,
+          "detectionsCount": 272,
+          "decodeTimeMs": 669.9848999999813,
+          "decodeFps": 62.68797998283421,
+          "totalInferenceTimeMs": 7026.190599999798,
+          "inferenceFps": 5.977634594769064,
+          "totalTrackingTimeMs": 7.30600000009872,
+          "trackingFps": 5748.699698799957,
+          "totalPipelineTimeMs": 7703.481499999878,
+          "endToEndFps": 5.452080335365337
+        },
+        {
+          "run": 3,
+          "framesCount": 42,
+          "detectionsCount": 272,
+          "decodeTimeMs": 578.952099999995,
+          "decodeFps": 72.54486165608583,
+          "totalInferenceTimeMs": 6876.201800000039,
+          "inferenceFps": 6.108023182216637,
+          "totalTrackingTimeMs": 4.232799999706913,
+          "trackingFps": 9922.509923196976,
+          "totalPipelineTimeMs": 7459.386699999741,
+          "endToEndFps": 5.630489702323846
+        },
+        {
+          "run": 4,
+          "framesCount": 42,
+          "detectionsCount": 272,
+          "decodeTimeMs": 667.2997999999789,
+          "decodeFps": 62.94022566768539,
+          "totalInferenceTimeMs": 7683.950500000152,
+          "inferenceFps": 5.465938386771124,
+          "totalTrackingTimeMs": 3.6226000001188368,
+          "trackingFps": 11593.882846193954,
+          "totalPipelineTimeMs": 8354.87290000025,
+          "endToEndFps": 5.027006455118994
+        },
+        {
+          "run": 5,
+          "framesCount": 42,
+          "detectionsCount": 272,
+          "decodeTimeMs": 1213.8055000000168,
+          "decodeFps": 34.60191933551086,
+          "totalInferenceTimeMs": 9415.602999999537,
+          "inferenceFps": 4.460680850711533,
+          "totalTrackingTimeMs": 3.7651000000769272,
+          "trackingFps": 11155.082202104028,
+          "totalPipelineTimeMs": 10633.17359999963,
+          "endToEndFps": 3.949902595402134
+        }
+      ],
+      "metrics": {
+        "decodeFps": {
+          "n": 5,
+          "mean": 56.57,
+          "median": 62.69,
+          "p95": 70.62,
+          "p99": 72.16,
+          "min": 34.6,
+          "max": 72.54
+        },
+        "inferenceFps": {
+          "n": 5,
+          "mean": 5.28,
+          "median": 5.47,
+          "p95": 6.08,
+          "p99": 6.1,
+          "min": 4.39,
+          "max": 6.11
+        },
+        "trackingFps": {
+          "n": 5,
+          "mean": 9032.35,
+          "median": 9922.51,
+          "p95": 11506.12,
+          "p99": 11576.33,
+          "min": 5748.7,
+          "max": 11593.88
+        },
+        "endToEndFps": {
+          "n": 5,
+          "mean": 4.82,
+          "median": 5.03,
+          "p95": 5.59,
+          "p99": 5.62,
+          "min": 3.95,
+          "max": 5.63
+        },
+        "inferenceLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 193.16,
+          "median": 164.87,
+          "p95": 391.6,
+          "p99": 707.38,
+          "min": 125.29,
+          "max": 1046.65
+        },
+        "trackingLatencyMsPerFrame": {
+          "n": 210,
+          "mean": 0.12,
+          "median": 0.04,
+          "p95": 0.66,
+          "p99": 0.86,
+          "min": 0.02,
+          "max": 2.79
+        }
+      }
+    }
+  ]
+}

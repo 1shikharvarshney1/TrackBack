@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-11-13T18:30:53.131Z",
+  "mechanism": {
+    "type": "in_memory_event_loop",
+    "scheduler": "setImmediate()",
+    "persistentQueue": false,
+    "workerThreads": false,
+    "redisOrBullMQ": false
+  },
+  "midJobRestartBehavior": {
+    "result": "stuck",
+    "explanation": "Jobs in 'processing' or 'queued' state are scheduled solely in Node.js event-loop memory via setImmediate(). Upon process termination, the in-flight task dies. On restart, server.js has no recovery hook, leaving jobs permanently 'stuck' in 'processing' status."
+  },
+  "uploadResponseVsClipLength": [
+    {
+      "clip": "detrac_70_MVI_39511 (15.2s clip)",
+      "fileSizeMb": 3.73,
+      "uploadResponseTimeMs": 16.77,
+      "jobCompletionTimeSec": 46.94,
+      "framesProcessed": 46,
+      "sightingsCreated": 35,
+      "finalStatus": "done"
+    },
+    {
+      "clip": "detrac_69_MVI_39501 (14.0s clip)",
+      "fileSizeMb": 3.58,
+      "uploadResponseTimeMs": 21.36,
+      "jobCompletionTimeSec": 12.52,
+      "framesProcessed": 42,
+      "sightingsCreated": 44,
+      "finalStatus": "done"
+    },
+    {
+      "clip": "detrac_82_MVI_40773 (14.0s clip)",
+      "fileSizeMb": 2.57,
+      "uploadResponseTimeMs": 7.4,
+      "jobCompletionTimeSec": 10.51,
+      "framesProcessed": 42,
+      "sightingsCreated": 20,
+      "finalStatus": "done"
+    }
+  ]
+}

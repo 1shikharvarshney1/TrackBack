@@ -1,0 +1,8 @@
+{
+  "mechanism": "Post-hoc database string/regex match on OCR license plate text",
+  "visualReIdModel": false,
+  "crossCameraTrajectoryFusion": false,
+  "worksWhenPlateMatches": true,
+  "worksWhenPlateUnreadable": false,
+  "limitation": "Does NOT perform visual re-identification. Cross-camera vehicle linkage relies 100% on successful Gemini OCR plate extraction and string equality."
+}
