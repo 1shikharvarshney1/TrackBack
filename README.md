@@ -1,119 +1,192 @@
 # TrackBack
 
-TrackBack is a MERN-stack hit-and-run vehicle tracking and surveillance intelligence system. It ingests CCTV footage from multiple cameras, detects and tracks vehicles, reads license plates via Gemini Flash vision AI, maps chronological routes with Leaflet, flags traffic violations (overspeeding, sudden braking, collisions), and generates formal incident PDF dossiers.
+TrackBack is a full-stack automated surveillance intelligence and vehicle tracking system designed for hit-and-run investigations and traffic incident analysis. It ingests multi-camera CCTV footage, performs vehicle detection and multi-object tracking, reads license plates via vision AI, reconstructs chronological travel trajectories across camera networks, flags reckless driving anomalies (overspeeding, abrupt braking, collisions), and generates formal PDF investigation dossiers.
 
 ---
 
 ## Architecture Overview
 
-```
-Surveillance Video Clip (MP4/AVI)
-         │
-         ▼
-[ fluent-ffmpeg ] ──► Extract frames (~3 FPS)
-         │
-         ▼
-[ YOLOv8n ONNX (onnxruntime-node) ] ──► Vehicle Detections (Car, Motorcycle, Bus, Truck)
-         │
-         ▼
-[ Custom JS Tracker ] ──► IoU + Centroid Distance Tracking & Trajectory Chaining
-         │
-         ├──► [ Sharp ] ──► Crop Vehicle Lower Region (Bumper/Plate area)
-         │       │
-         │       ▼
-         │    [ Gemini Flash Vision API ] ──► License Plate OCR (JSON)
-         │
-         └──► [ Speed & Flag Analyzer ] ──► Pixel displacement/sec x calibration
-                 ├── Overspeeding (> 60 km/h)
-                 ├── Sudden Braking (Rapid deceleration)
-                 └── Collision Detection (Bbox overlap + abrupt speed drop)
-         │
-         ▼
-[ MongoDB Sightings ] ──► Chronological Timeline & Spatial Metadata
-         │
-         ├──► [ Leaflet Map ] ──► Interactive Route with numbered checkpoints
-         └──► [ PDFKit ]      ──► Downloadable Investigation Incident Report
+```mermaid
+flowchart TD
+    Video["CCTV Video Footage (MP4/AVI)"] --> Ingest["Express Video Ingestion API (/api/videos)"]
+    Ingest --> Storage["Local Storage (/uploads/videos) + MongoDB Document"]
+    Ingest -.->|"setImmediate() Non-blocking Dispatch"| Pipe["Background Video Pipeline"]
+    
+    subgraph Pipeline["Processing Pipeline"]
+        Pipe --> Decode["Frame Extraction (~3 FPS via FFmpeg)"]
+        Decode --> Detector["Vehicle Detector (YOLOv8n ONNX via onnxruntime-node)"]
+        Detector --> Tracker["Multi-Object Tracker (IoU + Centroid Association)"]
+        Tracker --> Speed["Kinematics & Violation Analyzer (Pixel Displacement)"]
+        Tracker --> Crop["Bumper/Plate Cropper (Sharp)"]
+        Crop --> OCR["License Plate Recognition (Google Gemini Vision API)"]
+    end
+    
+    Speed --> MongoDB[("MongoDB Database (Sightings & Videos)")]
+    OCR --> MongoDB
+    
+    subgraph Client["React Client Application (Vite)"]
+        MongoDB --> Dashboard["Investigation Dashboard"]
+        MongoDB --> RouteMap["Chronological Route Reconstruction (Leaflet)"]
+        MongoDB --> ReportPDF["Incident Dossier Generation (PDFKit)"]
+    end
 ```
 
 ---
 
-## Stack
+## Tech Stack
 
-- **Backend**: Node.js, Express, MongoDB (Mongoose), JWT, Bcrypt, Multer
-- **Computer Vision & Tracking**: YOLOv8n ONNX via `onnxruntime-node`, custom JS IoU + centroid-distance tracker (no python)
-- **Frame Extraction & Image Processing**: `fluent-ffmpeg`, `sharp`
-- **OCR**: Google Gemini 1.5/2.0 Flash Vision REST API (free tier)
-- **Frontend**: React (Vite), Leaflet map with custom numbered markers
-- **Reporting**: `pdfkit`
+- **Backend**: Node.js, Express.js, MongoDB (Mongoose ODM), JWT Authentication, Multer file streaming
+- **Computer Vision & Neural Inference**: YOLOv8n ONNX executed locally via `onnxruntime-node` (no external Python daemon required)
+- **Multi-Object Tracking**: Custom JavaScript centroid and Intersection-over-Union (IoU) association tracker
+- **Video Decoding & Image Processing**: `fluent-ffmpeg` and `sharp`
+- **Vision AI / OCR**: Google Gemini 1.5/2.0 Flash Vision REST API
+- **Frontend**: React 18, Vite, React Router, Tailwind CSS, Leaflet / React-Leaflet
+- **Reporting & Dossiers**: `pdfkit` dynamic server-side PDF generator
 
 ---
 
-## Setup Instructions
+## Project Structure
+
+```
+TrackBack/
+├── client/                     # React Vite frontend application
+│   ├── src/
+│   │   ├── api/                # API client with JWT interception
+│   │   ├── components/         # Leaflet route maps & camera pickers
+│   │   ├── pages/              # Dashboard, Cameras, Upload, Search, Auth
+│   │   ├── App.jsx             # Route definitions
+│   │   └── main.jsx            # Application entrypoint
+│   └── vite.config.js          # Vite config with backend proxy
+├── eval/                       # Independent evaluation harness
+│   ├── bench_throughput.js     # Step 2 throughput benchmarking script
+│   ├── bench_detection_tracking.js # Steps 3 & 4 detection/tracking benchmark
+│   ├── bench_cross_camera.js   # Step 6 cross-camera Re-ID verification
+│   ├── bench_async_jobs.js     # Step 7 async ingestion and restart benchmark
+│   ├── metrics.js              # Pure JS CLEAR MOT & Hungarian matching
+│   ├── download_dataset.js     # UA-DETRAC byte-range subset downloader
+│   ├── RESULTS.md              # Detailed empirical evaluation report
+│   └── results/                # Raw JSON output files for all benchmark runs
+├── server/                     # Express.js REST API and CV services
+│   ├── config/                 # MongoDB database connection
+│   ├── controllers/            # Auth, cameras, sightings, videos, reports
+│   ├── middleware/             # JWT auth verification and Multer uploads
+│   ├── models/                 # Mongoose schemas (User, Camera, Video, Sighting)
+│   ├── routes/                 # Express API routes
+│   ├── services/
+│   │   ├── detector.js         # YOLOv8n ONNX preprocessing and inference
+│   │   ├── tracker.js          # Bounding box trajectory association
+│   │   ├── speed.js            # Pixel displacement kinematics & anomaly rules
+│   │   ├── plateReader.js      # Gemini vision OCR integration & rate limiter
+│   │   ├── report.js           # PDFKit investigative incident report generator
+│   │   └── videoProcessor.js   # End-to-end background video processor
+│   └── server.js               # Application bootstrap
+├── .env.example                # Example environment configuration template
+└── README.md
+```
+
+---
+
+## Features
+
+1. **User Authentication**: Secure JWT-based access with bcrypt password hashing.
+2. **Interactive Camera Network Registry**: Point-and-click geolocation registration of surveillance cameras on interactive Leaflet maps.
+3. **Non-Blocking Video Ingestion**: Asynchronous surveillance video uploads linked to cameras and timestamps with sub-25 ms response times.
+4. **On-Device Vehicle Detection**: Neural object detection (cars, buses, trucks, motorcycles) running via ONNX Runtime on CPU without Python dependencies.
+5. **Persistent Multi-Object Tracking**: Trajectory continuity maintained across consecutive frames using centroid distance and IoU matching.
+6. **Automated License Plate Recognition**: Crops vehicle lower regions and queries Google Gemini Flash Vision API for alphanumeric plate extraction.
+7. **Kinematics & Traffic Anomaly Detection**: Detects overspeeding, abrupt deceleration (sudden braking), and potential collisions (bounding box overlap followed by abrupt stops).
+8. **Chronological Route Reconstruction**: Search any license plate to visualize the vehicle's chronological journey across multiple cameras with numbered checkpoint markers.
+9. **Investigative Incident Dossiers**: One-click generation of court-ready PDF investigative dossiers including timestamps, camera locations, speeds, flags, and last seen points.
+
+---
+
+## Prerequisites & Installation
 
 ### 1. Prerequisites
-- **Node.js** (v18+ recommended)
-- **MongoDB** running locally (`mongodb://127.0.0.1:27017`) or a MongoDB Atlas URI
-- **ffmpeg** installed and accessible in your system `PATH`
+- **Node.js**: v18.0.0 or higher
+- **MongoDB**: MongoDB Community Server installed and running locally on `localhost:27017` (or a MongoDB Atlas URI)
+- **FFmpeg**: Installed and available in your system `PATH` (verify with `ffmpeg -version`)
+- **Google Gemini API Key**: Free API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
-### 2. Environment Configuration
-Copy `.env.example` to `server/.env`:
+### 2. Clone and Setup Environment
 
+```bash
+# Clone the repository
+git clone https://github.com/your-username/TrackBack.git
+cd TrackBack
+
+# Copy example environment variables
+cp .env.example server/.env
+```
+
+Open `server/.env` and configure your credentials:
 ```env
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/trackback
-JWT_SECRET=supersecret_jwt_key_trackback_2026
+JWT_SECRET=your_secure_jwt_secret_here
 SPEED_CALIBRATION=0.5
 GEMINI_API_KEY=your_gemini_api_key_here
 GEMINI_MODEL=gemini-1.5-flash
+MAX_GEMINI_CALLS_PER_VIDEO=10
 ```
 
-### 3. Model File Setup
-The YOLOv8n ONNX model must reside at `server/models/yolov8n.onnx`.
-
-If missing, download the official pre-converted ONNX model directly:
+### 3. Verify YOLOv8n Model
+The repository ships with the lightweight YOLOv8n ONNX model at `server/models/yolov8n.onnx` (12.18 MB). If re-downloading is ever required:
 ```bash
 curl -L -o server/models/yolov8n.onnx https://huggingface.co/SpotLab/YOLOv8Detection/resolve/3005c6751fb19cdeb6b10c066185908faf66a097/yolov8n.onnx
 ```
 
-### 4. Install Dependencies
+### 4. Install Dependencies & Run
 
-**Server:**
 ```bash
+# Install backend dependencies
 cd server
 npm install
+
+# Start Express backend (runs on http://localhost:5000)
+npm start
 ```
 
-**Client:**
+In a separate terminal:
 ```bash
+# Install frontend dependencies
 cd client
 npm install
-```
 
-### 5. Running the Application
-
-**Start the Server:**
-```bash
-cd server
-npm start # or: node server.js
-```
-The backend API runs on `http://localhost:5000`.
-
-**Start the Client:**
-```bash
-cd client
+# Start Vite dev server (runs on http://localhost:3000)
 npm run dev
 ```
-The React frontend opens at `http://localhost:3000`.
+
+---
+
+## Testing & Evaluation
+
+### Running Tests
+Automated evaluation and benchmark scripts reside in the `/eval` folder:
+
+```bash
+# 1. Run pipeline throughput benchmark (FPS and latency breakdown, n=30 runs)
+$env:NODE_PATH="server/node_modules"; node eval/bench_throughput.js
+
+# 2. Run detection and tracking CLEAR MOT evaluation (against UA-DETRAC ground truth)
+$env:NODE_PATH="server/node_modules"; node eval/bench_detection_tracking.js
+
+# 3. Test cross-camera Re-ID mechanism
+$env:NODE_PATH="server/node_modules"; node eval/bench_cross_camera.js
+
+# 4. Benchmark asynchronous ingestion latency and restart failure mode
+$env:NODE_PATH="server/node_modules"; node eval/bench_async_jobs.js
+```
 
 ---
 
 ## Empirical Benchmark & Evaluation Statistics
 
-TrackBack underwent rigorous empirical evaluation on an independent benchmark (**UA-DETRAC**, CC BY 4.0; 6 sequences, 2,130 frames, 141 ground-truth tracks, 33,238 ground-truth bounding boxes) without modifying application logic. Testing was performed on Windows 11 with an Intel Core i5-10300H CPU @ 2.50 GHz (4 physical cores, 8 logical processors) and 8 GB RAM. Raw JSON outputs and scripts are available in [`eval/results/`](eval/results/) and [`eval/RESULTS.md`](eval/RESULTS.md).
+TrackBack underwent rigorous empirical evaluation on the independent [UA-DETRAC](https://detrac-db.rit.albany.edu/) benchmark (CC BY 4.0; 6 sequences, 2,130 frames, 141 ground-truth tracks, 33,238 ground-truth bounding boxes) without modifying application logic. Testing was executed on Windows 11 with an Intel Core i5-10300H CPU @ 2.50 GHz (4 physical cores, 8 logical processors) and 8 GB RAM. Raw outputs are in [`eval/results/`](eval/results/) and documented in [`eval/RESULTS.md`](eval/RESULTS.md).
 
-### Pipeline Throughput & Latency (n = 30 runs)
+### Pipeline Throughput & Latency ($n = 30$ measured runs)
 
-Gemini OCR network calls excluded to isolate CPU compute capability.
+*Note: Google Gemini OCR network calls were excluded to measure CPU compute throughput.*
 
 | Stage | Median FPS | p95 FPS | p99 FPS | Median Latency |
 | :--- | :---: | :---: | :---: | :---: |
@@ -126,7 +199,7 @@ Gemini OCR network calls excluded to isolate CPU compute capability.
 
 Evaluated across 2,130 consecutive traffic frames against UA-DETRAC ground-truth annotations:
 
-| Metric | Overall Benchmark (n = 2,130 frames, 141 GT tracks) | Crowded / Occluded Subgroup (n = 700 frames) | Moderate / Sparse Subgroup (n = 1,430 frames) |
+| Metric | Overall Benchmark ($n = 2,130$ frames, 141 GT tracks) | Crowded / Occluded Subgroup ($n = 700$ frames) | Moderate / Sparse Subgroup ($n = 1,430$ frames) |
 | :--- | :---: | :---: | :---: |
 | **Detection Precision** | 63.11% | 69.07% | 58.86% |
 | **Detection Recall** | 37.33% | 35.88% | 38.64% |
@@ -137,31 +210,15 @@ Evaluated across 2,130 consecutive traffic frames against UA-DETRAC ground-truth
 | **Fragmentations** | 637 | 539 | 98 |
 
 ### Async Ingestion & Cross-Camera Architecture
-- **Upload Latency**: 7.40 ms – 21.36 ms ($n = 3$ video streams) via non-blocking multipart file reception and in-memory event dispatch.
-- **Cross-Camera Re-ID**: Performed via MongoDB regex string matching on OCR-extracted license plate text; visual feature embedding models (e.g. DeepSORT/OSNet) are not currently employed.
-- **Plate & Speed Accuracy**: Plate reading and speed were not evaluated against ground truth because UA-DETRAC does not ship with plate text or physical speed telemetry. Speed remains an approximate 2D pixel-displacement estimate.
-
-For full methodologies, per-sequence breakdowns, failure analysis, and resume-safe statements, consult [eval/RESULTS.md](eval/RESULTS.md).
+- **Upload Response Latency**: 7.40 ms – 21.36 ms ($n = 3$ video streams) via non-blocking multipart file reception and in-memory event dispatch.
+- **Cross-Camera Re-ID**: Operated via MongoDB regex text string matching on OCR license plate text; visual feature embedding models (e.g., DeepSORT/OSNet) are not currently employed.
+- **Plate & Speed Accuracy**: Plate reading and speed were not evaluated against ground truth because UA-DETRAC does not provide ground-truth plate strings or physical radar telemetry.
 
 ---
 
-## Features
+## Known Limitations
 
-1. **Authentication**: JWT authentication with bcrypt password hashing.
-2. **Camera Management**: Register CCTV cameras with geolocation coordinates using point-and-click Leaflet map.
-3. **Surveillance Video Ingestion**: Upload CCTV clips linked to specific cameras and timestamps; processing runs asynchronously in the background.
-4. **Vehicle Detection & Tracking**: YOLOv8n detects vehicles; custom JS tracker maintains persistent identities across frames using IoU and centroid distance.
-5. **Automated Plate Recognition**: Sharp crops the lower vehicle bumper/plate region and queries Gemini Flash vision API.
-6. **Speed Estimation**: Computes pixel displacement per second multiplied by linear calibration factor.
-7. **Incident Flags**: Detects overspeeding, sudden braking, and potential collisions (bounding box overlap followed by sharp deceleration).
-8. **Route Reconstruction**: Search any plate to visualize chronological stops on Leaflet map with numbered markers and timeline.
-9. **Investigation Report PDF**: Generates formal incident report containing vehicle details, time window, camera locations, max speed, violation flags, and last seen location.
-10. **Dashboard**: Summary metrics for surveillance clips, tracked vehicles, and flagged traffic incidents.
-
----
-
-## System Limitations & Disclaimer
-
-- **Approximate Speed Estimation**: Speed is calculated based on 2D pixel centroid movement per second multiplied by a linear calibration constant. Because standard CCTV cameras exhibit optical perspective distortion, depth foreshortening, and varying angles, speed estimates are approximate and intended for investigative guidance rather than certified radar telemetry.
-- **Plate Recognition Sensitivity**: Gemini Flash OCR accuracy depends heavily on input image resolution, lighting conditions, camera distance, and motion blur. Extremely blurry, low-resolution, occluded, or night-time infrared footage may fail to yield readable plate characters.
-
+- **Approximate Speed Estimation**: Speed is calculated based on 2D pixel centroid movement per second multiplied by a linear calibration constant (`SPEED_CALIBRATION`). Because CCTV cameras exhibit optical perspective distortion, depth foreshortening, and varying pitch angles, speed estimates are approximate and intended for comparative investigative triage rather than certified radar telemetry.
+- **In-Memory Job Scheduling**: Background video processing is dispatched using Node.js `setImmediate()`. If the server process terminates or crashes while a video is processing, the job does not automatically resume and will remain in `'processing'` status until re-uploaded or reset.
+- **External OCR Rate Limits**: License plate recognition depends on the Google Gemini Flash API. Free-tier quotas can be exhausted during large video batches, after which plates are gracefully recorded as unreadable without crashing the pipeline.
+- **Occluded & Small Vehicles**: As observed in the empirical benchmark, distant vehicles with low pixel dimensions have lower detection recall (37.33% overall recall) with YOLOv8n at standard 640x640 letterbox scaling.
