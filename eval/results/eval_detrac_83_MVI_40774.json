@@ -1,0 +1,38 @@
+{
+  "sequence": "detrac_83_MVI_40774",
+  "frames": 350,
+  "groundTruth": {
+    "tracks": 10,
+    "boxes": 3045
+  },
+  "detection": {
+    "iouThreshold": 0.5,
+    "totalFrames": 350,
+    "totalGroundTruth": 3045,
+    "totalDetections": 2116,
+    "truePositives": 1365,
+    "falsePositives": 751,
+    "falseNegatives": 1680,
+    "precision": 0.6451,
+    "recall": 0.4483,
+    "f1": 0.529
+  },
+  "tracking": {
+    "frames": 350,
+    "gtTrajectories": 10,
+    "hypTrajectories": 41,
+    "totalGtBoxes": 3045,
+    "totalHypBoxes": 2398,
+    "matchedBoxes": 1427,
+    "falseNegatives": 1618,
+    "falsePositives": 971,
+    "idSwitches": 8,
+    "fragmentations": 8,
+    "mota": 14.71,
+    "motp": 85.12,
+    "idf1": 49.83,
+    "idp": 56.55,
+    "idr": 44.53
+  },
+  "category": "sparse_highway"
+}

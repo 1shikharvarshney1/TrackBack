@@ -1,0 +1,38 @@
+{
+  "sequence": "detrac_72_MVI_40711",
+  "frames": 350,
+  "groundTruth": {
+    "tracks": 34,
+    "boxes": 4903
+  },
+  "detection": {
+    "iouThreshold": 0.5,
+    "totalFrames": 350,
+    "totalGroundTruth": 4903,
+    "totalDetections": 5492,
+    "truePositives": 3125,
+    "falsePositives": 2367,
+    "falseNegatives": 1778,
+    "precision": 0.569,
+    "recall": 0.6374,
+    "f1": 0.6013
+  },
+  "tracking": {
+    "frames": 350,
+    "gtTrajectories": 34,
+    "hypTrajectories": 93,
+    "totalGtBoxes": 4903,
+    "totalHypBoxes": 6302,
+    "matchedBoxes": 3382,
+    "falseNegatives": 1521,
+    "falsePositives": 2920,
+    "idSwitches": 15,
+    "fragmentations": 19,
+    "mota": 9.12,
+    "motp": 84.16,
+    "idf1": 55.3,
+    "idp": 49.16,
+    "idr": 63.19
+  },
+  "category": "moderate_intersection"
+}
