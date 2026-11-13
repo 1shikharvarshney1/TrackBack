@@ -1,0 +1,55 @@
+{
+  "summaryReport": [
+    {
+      "sequence": "detrac_70_MVI_39511",
+      "category": "moderate",
+      "frames": 380,
+      "gtTracks": 14,
+      "gtBoxes": 5407,
+      "videoSizeMb": "3.73"
+    },
+    {
+      "sequence": "detrac_69_MVI_39501",
+      "category": "crowded",
+      "frames": 350,
+      "gtTracks": 24,
+      "gtBoxes": 7170,
+      "videoSizeMb": "3.58"
+    },
+    {
+      "sequence": "detrac_84_MVI_40775",
+      "category": "crowded_occluded",
+      "frames": 350,
+      "gtTracks": 46,
+      "gtBoxes": 8580,
+      "videoSizeMb": "3.77"
+    },
+    {
+      "sequence": "detrac_82_MVI_40773",
+      "category": "moderate",
+      "frames": 350,
+      "gtTracks": 13,
+      "gtBoxes": 4133,
+      "videoSizeMb": "2.57"
+    },
+    {
+      "sequence": "detrac_83_MVI_40774",
+      "category": "sparse_highway",
+      "frames": 350,
+      "gtTracks": 10,
+      "gtBoxes": 3045,
+      "videoSizeMb": "3.04"
+    },
+    {
+      "sequence": "detrac_72_MVI_40711",
+      "category": "moderate_intersection",
+      "frames": 350,
+      "gtTracks": 34,
+      "gtBoxes": 4903,
+      "videoSizeMb": "3.73"
+    }
+  ],
+  "totalFrames": 2130,
+  "totalTracks": 141,
+  "totalBoxes": 33238
+}
