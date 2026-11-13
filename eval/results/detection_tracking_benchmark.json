@@ -1,0 +1,293 @@
+{
+  "timestamp": "2026-11-13T18:39:30.731Z",
+  "overall": {
+    "totalSequences": 6,
+    "totalFrames": 2130,
+    "totalGtTracks": 141,
+    "totalHypTracks": 442,
+    "totalGtBoxes": 33238,
+    "detection": {
+      "precision": 63.11,
+      "recall": 37.33,
+      "f1": 46.91,
+      "truePositives": 12409,
+      "falsePositives": 7254,
+      "falseNegatives": 20829
+    },
+    "tracking": {
+      "mota": 14.96,
+      "idSwitches": 183,
+      "fragmentations": 637
+    }
+  },
+  "bySubgroup": {
+    "crowdedOrOccluded": {
+      "sequences": [
+        "detrac_69_MVI_39501",
+        "detrac_84_MVI_40775"
+      ],
+      "frames": 700,
+      "tracks": 70,
+      "gtBoxes": 15750,
+      "tp": 5651,
+      "fp": 2531,
+      "fn": 10099,
+      "idsw": 121,
+      "frag": 539,
+      "precision": 69.07,
+      "recall": 35.88,
+      "f1": 47.23,
+      "mota": 19.04
+    },
+    "moderateOrSparse": {
+      "sequences": [
+        "detrac_70_MVI_39511",
+        "detrac_72_MVI_40711",
+        "detrac_82_MVI_40773",
+        "detrac_83_MVI_40774"
+      ],
+      "frames": 1430,
+      "tracks": 71,
+      "gtBoxes": 17488,
+      "tp": 6758,
+      "fp": 4723,
+      "fn": 10730,
+      "idsw": 62,
+      "frag": 98,
+      "precision": 58.86,
+      "recall": 38.64,
+      "f1": 46.66,
+      "mota": 11.28
+    }
+  },
+  "perSequence": [
+    {
+      "sequence": "detrac_69_MVI_39501",
+      "frames": 350,
+      "groundTruth": {
+        "tracks": 24,
+        "boxes": 7170
+      },
+      "detection": {
+        "iouThreshold": 0.5,
+        "totalFrames": 350,
+        "totalGroundTruth": 7170,
+        "totalDetections": 3545,
+        "truePositives": 1759,
+        "falsePositives": 1786,
+        "falseNegatives": 5411,
+        "precision": 0.4962,
+        "recall": 0.2453,
+        "f1": 0.3283
+      },
+      "tracking": {
+        "frames": 350,
+        "gtTrajectories": 24,
+        "hypTrajectories": 102,
+        "totalGtBoxes": 7170,
+        "totalHypBoxes": 4471,
+        "matchedBoxes": 2003,
+        "falseNegatives": 5167,
+        "falsePositives": 2468,
+        "idSwitches": 66,
+        "fragmentations": 187,
+        "mota": -7.41,
+        "motp": 73.91,
+        "idf1": 30.58,
+        "idp": 39.81,
+        "idr": 24.83
+      },
+      "category": "crowded"
+    },
+    {
+      "sequence": "detrac_70_MVI_39511",
+      "frames": 380,
+      "groundTruth": {
+        "tracks": 14,
+        "boxes": 5407
+      },
+      "detection": {
+        "iouThreshold": 0.5,
+        "totalFrames": 380,
+        "totalGroundTruth": 5407,
+        "totalDetections": 2695,
+        "truePositives": 1325,
+        "falsePositives": 1370,
+        "falseNegatives": 4082,
+        "precision": 0.4917,
+        "recall": 0.2451,
+        "f1": 0.3271
+      },
+      "tracking": {
+        "frames": 380,
+        "gtTrajectories": 14,
+        "hypTrajectories": 66,
+        "totalGtBoxes": 5407,
+        "totalHypBoxes": 3258,
+        "matchedBoxes": 1523,
+        "falseNegatives": 3884,
+        "falsePositives": 1735,
+        "idSwitches": 14,
+        "fragmentations": 41,
+        "mota": -4.18,
+        "motp": 78.1,
+        "idf1": 29.75,
+        "idp": 39.56,
+        "idr": 23.84
+      },
+      "category": "moderate"
+    },
+    {
+      "sequence": "detrac_72_MVI_40711",
+      "frames": 350,
+      "groundTruth": {
+        "tracks": 34,
+        "boxes": 4903
+      },
+      "detection": {
+        "iouThreshold": 0.5,
+        "totalFrames": 350,
+        "totalGroundTruth": 4903,
+        "totalDetections": 5492,
+        "truePositives": 3125,
+        "falsePositives": 2367,
+        "falseNegatives": 1778,
+        "precision": 0.569,
+        "recall": 0.6374,
+        "f1": 0.6013
+      },
+      "tracking": {
+        "frames": 350,
+        "gtTrajectories": 34,
+        "hypTrajectories": 93,
+        "totalGtBoxes": 4903,
+        "totalHypBoxes": 6302,
+        "matchedBoxes": 3382,
+        "falseNegatives": 1521,
+        "falsePositives": 2920,
+        "idSwitches": 15,
+        "fragmentations": 19,
+        "mota": 9.12,
+        "motp": 84.16,
+        "idf1": 55.3,
+        "idp": 49.16,
+        "idr": 63.19
+      },
+      "category": "moderate_intersection"
+    },
+    {
+      "sequence": "detrac_82_MVI_40773",
+      "frames": 350,
+      "groundTruth": {
+        "tracks": 13,
+        "boxes": 4133
+      },
+      "detection": {
+        "iouThreshold": 0.5,
+        "totalFrames": 350,
+        "totalGroundTruth": 4133,
+        "totalDetections": 1178,
+        "truePositives": 943,
+        "falsePositives": 235,
+        "falseNegatives": 3190,
+        "precision": 0.8005,
+        "recall": 0.2282,
+        "f1": 0.3551
+      },
+      "tracking": {
+        "frames": 350,
+        "gtTrajectories": 13,
+        "hypTrajectories": 48,
+        "totalGtBoxes": 4133,
+        "totalHypBoxes": 1583,
+        "matchedBoxes": 1234,
+        "falseNegatives": 2899,
+        "falsePositives": 349,
+        "idSwitches": 25,
+        "fragmentations": 30,
+        "mota": 20.81,
+        "motp": 85.75,
+        "idf1": 32.02,
+        "idp": 57.8,
+        "idr": 22.14
+      },
+      "category": "moderate"
+    },
+    {
+      "sequence": "detrac_83_MVI_40774",
+      "frames": 350,
+      "groundTruth": {
+        "tracks": 10,
+        "boxes": 3045
+      },
+      "detection": {
+        "iouThreshold": 0.5,
+        "totalFrames": 350,
+        "totalGroundTruth": 3045,
+        "totalDetections": 2116,
+        "truePositives": 1365,
+        "falsePositives": 751,
+        "falseNegatives": 1680,
+        "precision": 0.6451,
+        "recall": 0.4483,
+        "f1": 0.529
+      },
+      "tracking": {
+        "frames": 350,
+        "gtTrajectories": 10,
+        "hypTrajectories": 41,
+        "totalGtBoxes": 3045,
+        "totalHypBoxes": 2398,
+        "matchedBoxes": 1427,
+        "falseNegatives": 1618,
+        "falsePositives": 971,
+        "idSwitches": 8,
+        "fragmentations": 8,
+        "mota": 14.71,
+        "motp": 85.12,
+        "idf1": 49.83,
+        "idp": 56.55,
+        "idr": 44.53
+      },
+      "category": "sparse_highway"
+    },
+    {
+      "sequence": "detrac_84_MVI_40775",
+      "frames": 350,
+      "groundTruth": {
+        "tracks": 46,
+        "boxes": 8580
+      },
+      "detection": {
+        "iouThreshold": 0.5,
+        "totalFrames": 350,
+        "totalGroundTruth": 8580,
+        "totalDetections": 4637,
+        "truePositives": 3892,
+        "falsePositives": 745,
+        "falseNegatives": 4688,
+        "precision": 0.8393,
+        "recall": 0.4536,
+        "f1": 0.5889
+      },
+      "tracking": {
+        "frames": 350,
+        "gtTrajectories": 46,
+        "hypTrajectories": 92,
+        "totalGtBoxes": 8580,
+        "totalHypBoxes": 5447,
+        "matchedBoxes": 4473,
+        "falseNegatives": 4107,
+        "falsePositives": 974,
+        "idSwitches": 55,
+        "fragmentations": 352,
+        "mota": 40.14,
+        "motp": 85.28,
+        "idf1": 59.91,
+        "idp": 77.14,
+        "idr": 48.97
+      },
+      "category": "crowded_occluded"
+    }
+  ]
+}
