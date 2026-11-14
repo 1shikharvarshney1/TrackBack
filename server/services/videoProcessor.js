@@ -1,6 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const ffmpeg = require('fluent-ffmpeg');
+
+try {
+  const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg');
+  if (ffmpegInstaller && ffmpegInstaller.path) {
+    ffmpeg.setFfmpegPath(ffmpegInstaller.path);
+  }
+} catch (e) {
+  // Fall back to system-installed ffmpeg if installer package is unavailable
+}
 const { detectVehicles } = require('./detector');
 const { VehicleTracker } = require('./tracker');
 const { cropVehicleLowerRegion, readPlate } = require('./plateReader');
