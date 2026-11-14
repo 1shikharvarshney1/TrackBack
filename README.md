@@ -39,7 +39,7 @@ flowchart TD
 - **Computer Vision & Neural Inference**: YOLOv8n ONNX executed locally via `onnxruntime-node` (no external Python daemon required)
 - **Multi-Object Tracking**: Custom JavaScript centroid and Intersection-over-Union (IoU) association tracker
 - **Video Decoding & Image Processing**: `fluent-ffmpeg` and `sharp`
-- **Vision AI / OCR**: Google Gemini 1.5/2.0 Flash Vision REST API
+- **Vision AI / OCR**: Google Gemini 3.5 Flash Lite Vision REST API
 - **Frontend**: React 18, Vite, React Router, Tailwind CSS, Leaflet / React-Leaflet
 - **Reporting & Dossiers**: `pdfkit` dynamic server-side PDF generator
 
@@ -93,7 +93,7 @@ TrackBack/
 3. **Non-Blocking Video Ingestion**: Asynchronous surveillance video uploads linked to cameras and timestamps with sub-25 ms response times.
 4. **On-Device Vehicle Detection**: Neural object detection (cars, buses, trucks, motorcycles) running via ONNX Runtime on CPU without Python dependencies.
 5. **Persistent Multi-Object Tracking**: Trajectory continuity maintained across consecutive frames using centroid distance and IoU matching.
-6. **Automated License Plate Recognition**: Crops vehicle lower regions and queries Google Gemini Flash Vision API for alphanumeric plate extraction.
+6. **Automated License Plate Recognition**: Crops vehicle lower regions and queries Google Gemini 3.5 Flash Lite Vision API for alphanumeric plate extraction.
 7. **Kinematics & Traffic Anomaly Detection**: Detects overspeeding, abrupt deceleration (sudden braking), and potential collisions (bounding box overlap followed by abrupt stops).
 8. **Chronological Route Reconstruction**: Search any license plate to visualize the vehicle's chronological journey across multiple cameras with numbered checkpoint markers.
 9. **Investigative Incident Dossiers**: One-click generation of court-ready PDF investigative dossiers including timestamps, camera locations, speeds, flags, and last seen points.
@@ -126,7 +126,7 @@ MONGO_URI=mongodb://127.0.0.1:27017/trackback
 JWT_SECRET=your_secure_jwt_secret_here
 SPEED_CALIBRATION=0.5
 GEMINI_API_KEY=your_gemini_api_key_here
-GEMINI_MODEL=gemini-1.5-flash
+GEMINI_MODEL=gemini-3.5-flash-lite
 MAX_GEMINI_CALLS_PER_VIDEO=10
 ```
 
@@ -220,5 +220,5 @@ Evaluated across 2,130 consecutive traffic frames against UA-DETRAC ground-truth
 
 - **Approximate Speed Estimation**: Speed is calculated based on 2D pixel centroid movement per second multiplied by a linear calibration constant (`SPEED_CALIBRATION`). Because CCTV cameras exhibit optical perspective distortion, depth foreshortening, and varying pitch angles, speed estimates are approximate and intended for comparative investigative triage rather than certified radar telemetry.
 - **In-Memory Job Scheduling**: Background video processing is dispatched using Node.js `setImmediate()`. If the server process terminates or crashes while a video is processing, the job does not automatically resume and will remain in `'processing'` status until re-uploaded or reset.
-- **External OCR Rate Limits**: License plate recognition depends on the Google Gemini Flash API. Free-tier quotas can be exhausted during large video batches, after which plates are gracefully recorded as unreadable without crashing the pipeline.
+- **External OCR Rate Limits**: License plate recognition depends on the Google Gemini 3.5 Flash Lite API. Free-tier quotas can be exhausted during large video batches, after which plates are gracefully recorded as unreadable without crashing the pipeline.
 - **Occluded & Small Vehicles**: As observed in the empirical benchmark, distant vehicles with low pixel dimensions have lower detection recall (37.33% overall recall) with YOLOv8n at standard 640x640 letterbox scaling.

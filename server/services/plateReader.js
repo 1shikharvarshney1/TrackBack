@@ -74,7 +74,7 @@ async function requestGeminiOcr(base64Image) {
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
-  const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash';
+  const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
 
   if (!apiKey || apiKey === 'your_gemini_api_key') {
     return { plate: null, unconfigured: true };

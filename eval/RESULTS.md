@@ -17,7 +17,7 @@ This document presents a comprehensive, empirical evaluation of **TrackBack** (v
   - ONNX Runtime: `onnxruntime-node v1.14.0` (CPU Execution Provider)
   - FFmpeg: `ffmpeg version N-127043-g350570b556`
 - **Database**: MongoDB Community Server running locally on `localhost:27017`
-- **External APIs**: Google Gemini 1.5 Flash API (Cloud-hosted REST API)
+- **External APIs**: Google Gemini 3.5 Flash Lite API (Cloud-hosted REST API)
 
 ---
 
@@ -129,7 +129,7 @@ This document presents a comprehensive, empirical evaluation of **TrackBack** (v
 > The UA-DETRAC benchmark contains vehicle bounding boxes and track IDs, but does **not** provide ground-truth license plate strings or calibrated radar speed measurements. Therefore, plate reading accuracy and speed accuracy are **not evaluated** against ground truth in this benchmark.
 
 - **Speed Computation Disclaimer**: TrackBack calculates vehicle speed strictly as an **approximate pixel-displacement estimate** between successive video frames (`speed = (distance / fps) * scale_factor`). It is **not** radar-calibrated nor verified against physical ground-truth vehicle telemetry.
-- **License Plate OCR**: Performed via Google Gemini 1.5 Flash multimodal API. During stress evaluation, Gemini hit the free-tier quota ceiling (429 rate limit), falling back to marking plates as `UNREADABLE`. In production, throughput is gated by external API latency (~3.4 seconds per OCR call) and upstream request limits.
+- **License Plate OCR**: Performed via Google Gemini 3.5 Flash Lite multimodal API. During stress evaluation, Gemini hit the free-tier quota ceiling (429 rate limit), falling back to marking plates as `UNREADABLE`. In production, throughput is gated by external API latency (~3.4 seconds per OCR call) and upstream request limits.
 
 ---
 
